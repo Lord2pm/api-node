@@ -8,6 +8,9 @@ app.get("/", (req, res) => {
     res.end("Minha primeira API com o NodeJS e o Express!");
 });
 
+
+// Select
+
 app.get('/ver-alunos', (req, res) => {
     conn.query('select * from alunos', (err, result) => {
         if(!err) {
@@ -18,6 +21,9 @@ app.get('/ver-alunos', (req, res) => {
         }
     });
 });
+
+
+// Insert
 
 app.post('/cadastrar-aluno', (req, res) => {
     const aluno = req.body;
@@ -31,6 +37,9 @@ app.post('/cadastrar-aluno', (req, res) => {
     });
 });
 
+
+// Update
+
 app.put('/actualizar-aluno/:id', (req, res) => {
     const aluno = [req.body.nome, req.body.media, req.params.id];
     conn.query('update alunos set nome = ?, media = ? where id = ?', aluno, (err, result) => {
@@ -42,6 +51,9 @@ app.put('/actualizar-aluno/:id', (req, res) => {
         }
     });
 })
+
+
+// Delete
 
 app.delete('/eliminar-aluno/:id', (req, res) => {
     let id = req.params.id;
